@@ -36,7 +36,7 @@ public class Round {
 	
 	public void play() {
 		
-		makeSpace();
+		makeSpace(3);
 		
 		// Initial Printing
 		printBoard();
@@ -74,7 +74,7 @@ public class Round {
 		
 	}
 	
-	private int computeLengthMinusWhitespace() {
+	int computeLengthMinusWhitespace() {			// Changed access modifier for JUnit test
 		int lengthMinusWhite = word.length();
 		
 		for (int i = 0; i < word.length(); i++) {
@@ -92,6 +92,8 @@ public class Round {
 		boolean containsLetter = false;
 		
 		printGuessedLetters();
+		
+		makeSpace(5);
 		
 		System.out.println("\n\n('quit' to end)");
 		System.out.print("Guess a letter (a-z) -> ");
@@ -135,7 +137,7 @@ public class Round {
 		
 		//
 		
-		makeSpace();
+		makeSpace(10);
 		
 		// Print Updated Board
 		System.out.println("\n");
@@ -189,7 +191,7 @@ public class Round {
 		
 	}
 	
-	private boolean validateGuessedLetter() {
+	boolean validateGuessedLetter() {		// Changed access modifier for JUnit test
 
 		while (letterGuess.length() != 1 || !(Character.isLetter(letterGuess.charAt(0))) || guessed.toString().contains(letterGuess)) {
 
@@ -212,9 +214,9 @@ public class Round {
 
 	}
 	
-	private void makeSpace() {
+	private void makeSpace(int lines) {
 		
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < lines; i++)
 			System.out.println();
 		
 	}

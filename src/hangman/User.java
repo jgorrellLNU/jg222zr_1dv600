@@ -1,8 +1,10 @@
 package hangman;
 
+import java.io.IOException;
+
 public class User {
 
-	private String userName;
+	private String username;
 	private int hardGamesPlayed = 0;
 	private int normalGamesPlayed = 0;
 	private int totalGamesPlayed = 0;
@@ -11,8 +13,11 @@ public class User {
 	private int wordsSolvedAllTime = 0;
 	private int numTimesHanged = 0;
 	
-	public User (String userName) {
-		this.userName = userName;
+	public User (String username) throws IOException {
+		if (isValidUsername(username))
+			this.username = username;
+		else
+			throw new IOException("*Only letters are valid in a username*");
 	}
 	
 	// Increment-ers \\
@@ -27,8 +32,8 @@ public class User {
 
 	// Getters \\
 	
-	protected String getUserName() {
-		return new String(userName);
+	public String getUserName() {
+		return new String(username);
 	}
 
 	protected int getHardGamesPlayed() {
@@ -59,6 +64,43 @@ public class User {
 		return numTimesHanged;
 	}
 
+	// ToString \\
 	
+	@Override
+	public String toString() {
+		return username + " | Words Solved All Time: " + wordsSolvedAllTime;
+	}
+	
+	// Validator
+	
+	boolean isValidUsername(String name) {
+		
+		if (name.length() == 0)
+			return false;
+		else if (name.length() > 20)
+			return false;
+		
+		char[] usernameChars = name.toCharArray();
+		
+		for (char c : usernameChars) {
+			
+			if (!Character.isLetter(c))
+				return false;
+			
+		}
+		
+		return true;
+		
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
